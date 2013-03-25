@@ -38,6 +38,16 @@
     Boolean blinkingYellow;
     int blinkingRedTimer;
     int blinkingYellowTimer;
+    NSString *_LightsURL;
+    NSMutableString *_LightsAddress;
+    
+    int currentIndex;
+    
 }
+
+
+
+- (void) postDataWithUrl:(NSString *) urlString withArgument: (NSString *) argument;
+
 @end;
 

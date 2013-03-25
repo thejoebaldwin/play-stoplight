@@ -10,6 +10,7 @@
 #import "ConstantsAndMacros.h"
 #import "OpenGLCommon.h"
 #import "Test3AppDelegate.h"
+#import "AddressViewController.h"
 @implementation GLViewController
 
 -(void) updateQuad: (quad*) theQuad
@@ -178,6 +179,36 @@
     initialized = true;
  }
 
+
+
+- (void) postDataWithUrl:(NSString *) urlString withArgument: (NSString *) argument;
+{
+    // Create a new data container for the stuff that comes back from the service
+    //jsonData = [[NSMutableData alloc] init];
+    
+    NSString *newURL = [[NSString alloc] initWithFormat:@"%@?=%@", urlString, argument];
+    
+    NSURL *url = [NSURL URLWithString: newURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    
+    
+    //NSData* postData=[JSON dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [request setHTTPMethod:@"GET"];
+    //[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    //[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //[request setValue:[NSString stringWithFormat:@"%d", [postData length]] forHTTPHeaderField:@"Content-Length"];
+    //[request setHTTPBody: postData];
+    
+    // Create a connection that will exchange this request for data from the URL
+     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
+                                                 delegate:self
+                                         startImmediately:YES];
+    NSLog(@"Posting to %@", newURL);
+}
+
+
 - (void) update
 {
     //do all updates here
@@ -207,6 +238,7 @@
                    }
                }
                myQuads[i].is_selected = true;
+             
                quadTouchIndex = i;
            };    
         }
@@ -311,17 +343,27 @@
     Test3AppDelegate *appDelegate = (Test3AppDelegate *) [[UIApplication sharedApplication] delegate];
     int blinkRate = 50;
 
+    NSString *RED = @"010";
+    NSString *YELLOW = @"100";
+    NSString *GREEN = @"001";
+    NSString *CLEAR = @"000";
     
     //this has to go in a function
     //if timer switch is off and a shape was touched
     if (quadTouchIndex > -1 && appDelegate.switchTimer.on == NO)
     {
+        
+        if (quadTouchIndex != currentIndex)
+        {
+            currentIndex = quadTouchIndex;
         if (quadTouchIndex == 0)
         {
             //red light clicked
             timer = yellowLength + 1;   
             myQuads[1].is_selected = false;
             myQuads[2].is_selected = false;
+            [self postDataWithUrl:_LightsURL withArgument:RED];
+
         }
         else if (quadTouchIndex == 1)
         {
@@ -329,6 +371,8 @@
             timer = greenLength + 1;
             myQuads[0].is_selected = false;
             myQuads[2].is_selected = false;
+            [self postDataWithUrl:_LightsURL withArgument:YELLOW];
+
             
         }
         else if (quadTouchIndex == 2)
@@ -338,7 +382,13 @@
             myQuads[0].is_selected = false;
             myQuads[1].is_selected = false;
             timerReset = true;
+            [self postDataWithUrl:_LightsURL withArgument:GREEN];
+
         }
+        
+        }
+   
+        
     }
     
     if (appDelegate.switchTimer.on == YES)
@@ -348,18 +398,36 @@
             myQuads[0].is_selected = false;
             myQuads[1].is_selected = false;
             myQuads[2].is_selected = true;
+            if (currentIndex != 2)
+            {
+            [self postDataWithUrl:_LightsURL withArgument:GREEN];
+            currentIndex = 2;
+            }
+
         }
         else if (timer >= greenLength && timer < yellowLength + greenLength)
         {
             myQuads[0].is_selected = false;
             myQuads[1].is_selected = true;
             myQuads[2].is_selected = false;
+            
+            if (currentIndex != 1)
+            {
+            [self postDataWithUrl:_LightsURL withArgument:YELLOW];
+            currentIndex = 1;
+            }
+
         }
         else if (timer >= yellowLength + greenLength && timer <= timerLimit)
         {
             myQuads[0].is_selected = true;
             myQuads[1].is_selected = false;
-            myQuads[2].is_selected = false;        
+            myQuads[2].is_selected = false;
+            if (currentIndex != 0)
+            {
+            [self postDataWithUrl:_LightsURL withArgument:RED];
+            currentIndex = 0;
+            }
         }
         else
         {
@@ -552,6 +620,17 @@
   }
 
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    
+    NSLog(@"Rebuilding URL with %@", _LightsAddress);
+    
+    _LightsURL = [[NSString alloc] initWithFormat:@"http://%@/lights.php", _LightsAddress];
+    [self postDataWithUrl:_LightsURL withArgument:@"000"];
+   
+    
+}
+
 -(void) initialize
 {
     //initialize all shapes
@@ -581,6 +660,31 @@
     autoMode = true;
     
     [self initLightLengths];
+
+       
+    AddressViewController *address = [[AddressViewController alloc] init];
+    //_LightsAddress   = @"192.168.1.84";
+    _LightsAddress    = [[NSMutableString alloc] initWithString:@"192.168.1.84"];
+    [address SetLightsAddress:_LightsAddress];
+    
+    UINavigationController *navController  = [[UINavigationController alloc] initWithRootViewController:address];
+    
+    [self presentViewController:navController animated:YES completion:nil];
+
+    
+    currentIndex = -1;
+    
+    /*
+    loginViewController *lvc = [[loginViewController alloc] init];
+    UINavigationController *navController  = [[UINavigationController alloc] initWithRootViewController:lvc];
+    void (^block)(void) = ^{
+        NSLog(@"inside calling block");
+        //[[StertItemStore sharedStore] loadSterts:self withSelector:@"loadComplete"];
+    };
+    [self presentViewController:navController animated:YES completion:block];
+    */
+
+    
 
 }
 

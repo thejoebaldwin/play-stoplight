@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97C9E5AF16FFFF24008029A5 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C9E5AD16FFFF24008029A5 /* AddressViewController.m */; };
+		97C9E5B016FFFF24008029A5 /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C9E5AE16FFFF24008029A5 /* AddressViewController.xib */; };
 		D84869081455B87B00082D0F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D84869071455B87B00082D0F /* Default.png */; };
 		D84961721453285700AD53CB /* off.png in Resources */ = {isa = PBXBuildFile; fileRef = D84961711453285700AD53CB /* off.png */; };
 		D84961741453285F00AD53CB /* flare.png in Resources */ = {isa = PBXBuildFile; fileRef = D84961731453285F00AD53CB /* flare.png */; };
@@ -33,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		97C9E5AC16FFFF24008029A5 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		97C9E5AD16FFFF24008029A5 /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		97C9E5AE16FFFF24008029A5 /* AddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressViewController.xib; sourceTree = "<group>"; };
 		D84869071455B87B00082D0F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D84961711453285700AD53CB /* off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = off.png; sourceTree = "<group>"; };
 		D84961731453285F00AD53CB /* flare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flare.png; sourceTree = "<group>"; };
@@ -127,6 +132,9 @@
 				D8CA93DB13A9B15E001CB2A8 /* GLView.m */,
 				D8CA93DD13A9B15E001CB2A8 /* GLViewController.h */,
 				D8CA93DF13A9B15E001CB2A8 /* GLViewController.m */,
+				97C9E5AC16FFFF24008029A5 /* AddressViewController.h */,
+				97C9E5AD16FFFF24008029A5 /* AddressViewController.m */,
+				97C9E5AE16FFFF24008029A5 /* AddressViewController.xib */,
 				D8CA93E113A9B15E001CB2A8 /* OpenGLTexture3D.h */,
 				D8CA93E313A9B15E001CB2A8 /* OpenGLTexture3D.m */,
 				D8CA93E513A9B15E001CB2A8 /* OpenGLCommon.h */,
@@ -213,6 +221,7 @@
 				D8496178145328FE00AD53CB /* stoplight_icon.png in Resources */,
 				D849617A1453290900AD53CB /* stoplight_icon.png in Resources */,
 				D84869081455B87B00082D0F /* Default.png in Resources */,
+				97C9E5B016FFFF24008029A5 /* AddressViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +237,7 @@
 				D8CA93E013A9B15E001CB2A8 /* GLViewController.m in Sources */,
 				D8CA93E413A9B15E001CB2A8 /* OpenGLTexture3D.m in Sources */,
 				D8CA93EA13A9B15E001CB2A8 /* Test3AppDelegate.m in Sources */,
+				97C9E5AF16FFFF24008029A5 /* AddressViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +259,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Humboldt Technology Group, LLC";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -257,7 +267,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "1B486863-673D-4CF5-9D20-774227B0307B";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -292,7 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Humboldt Technology Group, LLC";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -302,7 +312,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				PROVISIONING_PROFILE = "1B486863-673D-4CF5-9D20-774227B0307B";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -312,7 +322,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Humboldt Technology Group, LLC";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -320,7 +330,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "1B486863-673D-4CF5-9D20-774227B0307B";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -345,8 +355,6 @@
 				INFOPLIST_FILE = "Test3/Test3-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = stoplight;
-				PROVISIONING_PROFILE = "EB82A7A1-A4B1-4304-A2F2-49E3C23B72BE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EB82A7A1-A4B1-4304-A2F2-49E3C23B72BE";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
